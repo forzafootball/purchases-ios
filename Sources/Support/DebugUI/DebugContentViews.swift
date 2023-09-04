@@ -32,37 +32,7 @@ struct DebugSwiftUIRootView: View {
     private var presentationMode
 
     var body: some View {
-        NavigationStack(path: self.$model.navigationPath) {
-            DebugSummaryView(model: self.model)
-                .navigationDestination(for: DebugViewPath.self) { path in
-                    switch path {
-                    case let .offering(offering):
-                        DebugOfferingView(offering: offering)
-
-                    case let .package(package):
-                        DebugPackageView(package: package)
-                    }
-                }
-                .background(
-                    Rectangle()
-                        .foregroundStyle(Material.thinMaterial)
-                        .edgesIgnoringSafeArea(.all)
-                )
-                #if os(macOS) || targetEnvironment(macCatalyst)
-                .toolbar {
-                    ToolbarItem(placement: .automatic) {
-                        Button {
-                            self.presentationMode.wrappedValue.dismiss()
-                        } label: {
-                            Label("Close", systemImage: "xmark")
-                        }
-                    }
-                }
-                #endif
-        }
-        .task {
-            await self.model.load()
-        }
+        EmptyView()
     }
 
     static let cornerRadius: CGFloat = 24

@@ -46,9 +46,6 @@ final class DebugViewModel: ObservableObject {
     var currentAppUserID: String?
     #endif
 
-    @Published
-    var navigationPath = NavigationPath()
-
     func load() async {
         self.configuration = .loaded(.create())
 

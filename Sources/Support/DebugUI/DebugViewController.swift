@@ -58,33 +58,5 @@ public final class DebugViewController: UIViewController {
 
 }
 
-@available(iOS 16.0, *)
-extension UIViewController {
-
-    /// Presents a bottom sheet overlay on top of the current view controller
-    /// which allows debugging the current SDK setup.
-    ///
-    /// - Seealso: `DebugViewController`.
-    /// - Seealso: `View.debugRevenueCatOverlay` for `SwiftUI`.
-    @objc(rc_presentDebugRevenueCatOverlayAnimated:)
-    public func presentDebugRevenueCatOverlay(animated: Bool = true) {
-        let controller = DebugViewController()
-
-        if let sheet = controller.sheetPresentationController {
-            sheet.detents = [
-                .custom(resolver: { context in context.maximumDetentValue * 0.2 }),
-                .medium(),
-                .large()
-            ]
-            sheet.largestUndimmedDetentIdentifier = .medium
-            sheet.preferredCornerRadius = DebugSwiftUIRootView.cornerRadius
-            sheet.prefersGrabberVisible = true
-        }
-
-        self.present(controller, animated: animated)
-    }
-
-}
-
 #endif
 #endif
